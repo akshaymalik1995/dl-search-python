@@ -174,10 +174,13 @@ def get_vehicle_details():
             return jsonify({"error": "Error getting vehicle details"})
 
         print(str(details))
-
+        del dl_sessions[id]
         return jsonify({"details": get_data_from_tables(details)})
     except Exception as e:
         print(e)
+        # close session object
+        del dl_sessions[id]
+
         return jsonify({"error": str(e)})
 
 
